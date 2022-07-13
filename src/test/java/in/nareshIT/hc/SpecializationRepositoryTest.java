@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,7 @@ public class SpecializationRepositoryTest {
 		assertNotNull(sp.getId(),"specnot created");
 	}
 	
+	@Disabled
 	@Test
 	@Order(2)
 	public void fetctchAll() {
