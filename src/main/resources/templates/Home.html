@@ -1,0 +1,98 @@
+<html>
+<head>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="card">
+			<div class="card-header bg-primary text-white text-center">
+				<h3>Employee Register Page</h3>
+			</div>
+			<!-- close header -->
+			<div class="card-body">
+				<form action="#" method="POST"></form>
+				<!-- row#1 -->
+				<div class="row">
+					<div class="col-2">
+						<label for="empName">Name of Employee</label>
+					</div>
+					<div class="col-4">
+						<input type="text" name="empName" id="empName"
+							class="form-control" />
+					</div>
+					<div class="col-5">
+						<span class="empNameError text-danger">*please
+							eneter valid name</span>
+					</div>
+				</div>
+				<!-- row#2 -->
+				<div class="row">
+					<div class="col-2">
+						<label for="empSalary">Employee Salary</label>
+					</div>
+					<div class="col-4">
+						<input type="number" name="empSalary" id="empSalary"
+							class="form-control" />
+					</div>
+					<div class="col-5">
+						<span class="empSalaryError text-danger">*enter
+							employee salary</span>
+					</div>
+				</div>
+				<!-- row#3 -->
+				<div class="row">
+					<div class="col-2">
+						<label> Employee Department </label>
+					</div>
+					<div class="col-4">
+						<select name="empDpt" id="empDpt" class="form-control">
+							<option value="-select-">-SELECT-</option>
+							<option value="DEV">DEV</option>
+							<option value="QA">QA</option>
+							<option value="BA">BA</option>
+						</select>
+					</div>
+					<div class="col-5">
+						<span class="empDptError text-danger">*chose department</span>
+					</div>
+				</div>
+				<!-- row#4 -->
+				<div class="row">
+					<div class="col-2">
+						<label for="empGen1">Gender</label>
+					</div>
+					<div class="col-4">
+						<input type="radio" name="empGen1" id="empGen1" value="male" />MALE
+						<input type="radio" name="empGen1" id="empGen2" value="female" />FEMALE
+					</div>
+					<div class="col-5">
+						<span class="empGenError text-danger">*eneter a gender</span>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-2">
+						<label for="empShift">Employee Shift</label>
+					</div>
+					<div class="col-4">
+						<input type="checkbox" name="empShift" id="empShift1" value="9am" />9
+						AM <input type="checkbox" name="empShift" id="empShift2"
+							value="12am" />12 AM <input type="checkbox"
+							name="empShift" id="empShift3" value="3am" />3 PM
+					</div>
+					<div class="col-5">
+						<span class="empShiftError text-danger">*eneter
+							one or option</span>
+					</div>
+				</div>
+				<button type="submit" class="btn btn-success">Create</button>
+				<button type="reset" class="btn btn-danger">Clear</button>
+			</div>
+		</div>
+		<div class="card-footer bg-info text-center text-white">
+			<span><strong>Employee Created: '101'</strong></span>
+
+		</div>
+	</div>
+</body>
+</html>
