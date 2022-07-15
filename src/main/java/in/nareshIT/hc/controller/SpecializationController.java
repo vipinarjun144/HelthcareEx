@@ -52,4 +52,18 @@ public class SpecializationController {
 		return "redirect:all";
 	}
 	
+	@GetMapping("/edit")
+	public String showEdite(@RequestParam Long id,Model model) {
+		Specialization spec=service.getOneSpecialization(id);
+		model.addAttribute("specialization", spec);
+		return "SpecializationEdit";	
+	}
+	
+	
+	@PostMapping("/update")
+	public String updateSpec(@ModelAttribute Specialization spec,RedirectAttributes attributes) {
+	service.updateSpecialization(spec);
+		attributes.addAttribute("massage", "Record ("+spec.getId()+") is Update!");
+		return "redirect:all";	
+	}
 }

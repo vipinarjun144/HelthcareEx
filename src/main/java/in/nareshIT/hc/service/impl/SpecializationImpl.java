@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import in.nareshIT.hc.entity.Specialization;
 import in.nareshIT.hc.repository.SpecializationRepository;
@@ -40,9 +41,12 @@ public class SpecializationImpl implements ISpecializationService {
 			return null;
 		}
 	}
+	
 	@Override
 	public Specialization updateSpecialization(Specialization spec) {
 		return repo.save(spec);
 	}
+	
+	
 
 }
