@@ -17,19 +17,19 @@
             <div class="card-header bg-primary text-white text-center">
                 <h3>Specialization Data</h3>
             </div>
-            <table class="table table-hover bg-info text-white text-center">
+            <table class="table table-hover">
                 <tr>
                     <th>ID</th>
                     <th>CODE</th>
                     <th>NAME</th>
-                    <th>NOTE</th>
+                    <th class="text-center">NOTE</th>
                     <th>OPERTION</th>
                 </tr>
                 <tr th:each="ob:${list}">
-                    <td th:text>"${ob.id}"></td>
-                    <td th:text>"${ob.specCode}"></td>
-                    <td th:text>"${ob.specName}"></td>
-                    <td th:text>"${ob.specNote}"></td>
+                    <td th:text="${ob.id}"></td>
+                    <td th:text="${ob.specCode}"></td>
+                    <td th:text="${ob.specName}"></td>
+                    <td th:text="${ob.specNote}"></td>
                     <td><a>DELETE</a>| <a>EDIT</a></td>
                 </tr>
             </table>
