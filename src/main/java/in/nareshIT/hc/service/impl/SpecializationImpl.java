@@ -29,7 +29,6 @@ public class SpecializationImpl implements ISpecializationService {
 	@Override
 	public void removeSpecialization(Long id) {
 		repo.deleteById(id);
-
 	}
 
 	@Override
@@ -43,7 +42,6 @@ public class SpecializationImpl implements ISpecializationService {
 	}
 	@Override
 	public Specialization updateSpecialization(Specialization spec) {
-		// TODO Auto-generated method stub
 		return repo.save(spec);
 	}
 
