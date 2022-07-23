@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import in.nareshIT.hc.entity.Specialization;
+import in.nareshIT.hc.exception.SpecializationNotFoundException;
 import in.nareshIT.hc.repository.SpecializationRepository;
 import in.nareshIT.hc.service.ISpecializationService;
 
@@ -29,17 +30,22 @@ public class SpecializationImpl implements ISpecializationService {
 
 	@Override
 	public void removeSpecialization(Long id) {
-		repo.deleteById(id);
+		//repo.deleteById(id);
+		repo.delete(getOneSpecialization(id));
 	}
 
 	@Override
 	public Specialization getOneSpecialization(Long id) {
+		/*
 		Optional<Specialization> optional=repo.findById(id);
 		if(optional.isPresent()) {
 			return optional.get();
 		}else {
-			return null;
+			throw new SpecializationNotFoundException("Oops "+id+" Not Found!!");
 		}
+		*/
+		//TODO:JAVA 8 FEATURE
+		return repo.findById(id).orElseThrow(()->new SpecializationNotFoundException("Oops "+id+" Not Found!!"));
 	}
 	
 	@Override
