@@ -18,14 +18,14 @@
             <h3>Specialization Register</h3>
         </div>
         <div class="card-body">
-            <form th:action="@{/spec/save}" method="post" id="specForm">
+            <form th:action="@{/spec/save}" method="POST" id="specForm">
                 <!-- row#1 -->
                 <div class="row">
                     <div class="col-2">
                         <label>CODE</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" name="specCode" id="specCode" class="form-control">
+                        <input type="text" name="specCode" id="specCode" class="form-control"></input>
                     </div>
                     <div class="col-6">
                         <span id="specCodeError"></span>
@@ -37,7 +37,7 @@
                         <label>NAME</label>
                     </div>
                     <div class="col-4">
-                        <input type="text" name="specName" id="specName" class="form-control">
+                        <input type="text" name="specName" id="specName" class="form-control"/>
                     </div>
                     <div class="col-6">
                         <span id="specNameError"></span>

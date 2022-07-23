@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import in.nareshIT.hc.entity.Specialization;
@@ -65,5 +66,17 @@ public class SpecializationController {
 	service.updateSpecialization(spec);
 		attributes.addAttribute("massage", "Record ("+spec.getId()+") is Update!");
 		return "redirect:all";	
+	}
+	
+	@GetMapping("/checkCode")
+	@ResponseBody 
+	public String valideSpecCode(@RequestParam String spec) {
+		String massage="";
+		if(service.isspecCodeExist(spec)) {
+			massage =spec+" ,Already Exist!!";
+		}
+		
+		return massage;
+		
 	}
 }
