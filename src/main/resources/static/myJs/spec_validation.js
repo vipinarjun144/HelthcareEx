@@ -22,9 +22,14 @@
                     specCodeError= false;
                 }
                 else{
-	              $.ajax({
+	               var id=0;//if id=0 means for reg. page
+	               if($("#id").val()!=undefined){
+		                    specCodeError= true;
+		                    id=$("#id").val();
+	                  }
+	                   $.ajax({
 		                url:'checkCode',
-		                data:{"spec":val},
+		                data:{"spec":val,"id":id},
 		                success:function(respText){
 			              if(respText!=''){
 				               $("#specCodeError").show();

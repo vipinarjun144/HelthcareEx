@@ -89,9 +89,13 @@ public class SpecializationController {
 
 	@GetMapping("/checkCode")
 	@ResponseBody 
-	public String valideSpecCode(@RequestParam String spec) {
+	public String valideSpecCode(@RequestParam String spec,@RequestParam Integer id) {
 		String massage="";
-		if(service.isspecCodeExist(spec)) {
+		//if id=0 for reg. page
+		if(id==0 && service.isspecCodeExist(spec)) {
+			massage =spec+" ,Already Exist!!";
+		}//if id is present for reg. page
+		else if(id!=0 && service.isspecCodeExistForEdit(spec,id)) {
 			massage =spec+" ,Already Exist!!";
 		}
 

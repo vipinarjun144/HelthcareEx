@@ -43,11 +43,11 @@ public class SpecializationImpl implements ISpecializationService {
 		}else {
 			throw new SpecializationNotFoundException("Oops "+id+" Not Found!!");
 		}
-		*/
+		 */
 		//TODO:JAVA 8 FEATURE
 		return repo.findById(id).orElseThrow(()->new SpecializationNotFoundException("Oops "+id+" Not Found!!"));
 	}
-	
+
 	@Override
 	public Specialization updateSpecialization(Specialization spec) {
 		return repo.save(spec);
@@ -57,7 +57,12 @@ public class SpecializationImpl implements ISpecializationService {
 	public boolean isspecCodeExist(String spec) {
 		return repo.getSpecCodeCount(spec)>0;
 	}
-	
-	
+
+	@Override
+	public boolean isspecCodeExistForEdit(String spec, Integer id) {
+		return repo.getSpecCodeCountForEdit(spec, id)>0;
+	}
+
+
 
 }
