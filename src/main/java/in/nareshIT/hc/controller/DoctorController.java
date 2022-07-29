@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import in.nareshIT.hc.entity.Doctor;
 import in.nareshIT.hc.exception.DoctorNotFoundExceptions;
 import in.nareshIT.hc.service.IDoctorService;
+import in.nareshIT.hc.service.ISpecializationService;
 
 @Controller
 @RequestMapping("/doc")
@@ -23,12 +24,21 @@ public class DoctorController {
 	@Autowired
 	private IDoctorService service;
 	
-	//1 shoe reg page
+	@Autowired
+	private ISpecializationService specService;
+	
+	
+	public void createDynamicUI(Model model) {
+		model.addAttribute("Specializations", specService.getIdAndSpecName());
+		
+	} 
+	
+	//1 show reg page
 	@GetMapping("/register")
 	public String showRegPage(@RequestParam(value ="massage",required = false) String massage,
 			Model model) {
 		model.addAttribute("massage", massage);
-		
+		createDynamicUI(model);
 		return"DoctorRegister";
 	}
 	
@@ -40,9 +50,10 @@ public class DoctorController {
 	}
 	
 	@GetMapping("/all")
-	public String getAll(@RequestParam(value="massage",required = false)String massage ,
+	public String getAll(@RequestParam(value="massage",required = false)String massage,
 			Model model) {
 		List<Doctor> list=service.getAllDoctor();
+		System.out.println(list.get(0).getSpecialzation());
 		model.addAttribute("list", list);
 		model.addAttribute("massage", massage);
 		return "DoctorData";
@@ -66,12 +77,13 @@ public class DoctorController {
 	
 	@GetMapping("/edit")
 	public String editeDoctor(@RequestParam("id") Long id,
-			RedirectAttributes attribute) {
+			RedirectAttributes attribute,Model model) {
 		
 		String page=null;
 		try {
 		Doctor doctor=service.getOneDoctor(id);
-		attribute.addAttribute("doctor", doctor);
+		model.addAttribute("doctor", doctor);
+		createDynamicUI(model);
 		page="DoctorEdit";
 		}catch(DoctorNotFoundExceptions e) {
 			e.printStackTrace();
@@ -81,7 +93,7 @@ public class DoctorController {
 	   return page;
 	}
 	
-	@GetMapping("/update")
+	@PostMapping("/update")
 	public String updateDoctor(@ModelAttribute Doctor doc,
 			RedirectAttributes attribute) {
 		    service.updateDoctor(doc);

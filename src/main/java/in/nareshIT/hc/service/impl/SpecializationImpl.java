@@ -1,6 +1,7 @@
 package in.nareshIT.hc.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import in.nareshIT.hc.entity.Specialization;
 import in.nareshIT.hc.exception.SpecializationNotFoundException;
 import in.nareshIT.hc.repository.SpecializationRepository;
 import in.nareshIT.hc.service.ISpecializationService;
+import in.nareshIT.hc.util.Util;
 
 @Service
 public class SpecializationImpl implements ISpecializationService {
@@ -61,6 +63,13 @@ public class SpecializationImpl implements ISpecializationService {
 	@Override
 	public boolean isspecCodeExistForEdit(String spec, Integer id) {
 		return repo.getSpecCodeCountForEdit(spec, id)>0;
+	}
+
+	@Override
+	public Map<Long, String> getIdAndSpecName() {
+		List<Object[]> list =repo.getIdAndSpecName();
+		Map<Long, String> map=Util.convertListToMap(list);
+		return map;
 	}
 
 
