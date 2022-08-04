@@ -68,6 +68,21 @@
                         <span id="emailError"></span>
                     </div>
                 </div>
+                <!-- Dynamic Dropdown -->
+                <div class="row">
+                    <div class="col-2">
+                        <label id="specialzation">Specialization</label>
+                    </div>
+                    <div class="col-4">
+                        <select th:field="*{specialzation}" name="specialzation.id" >
+                        <option value="">-SELECT-</option>
+                        <option th:each="ob:${specialzations}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <span id="specializationError"></span>
+                    </div>
+                </div>
                  <!-- #row4 -->
                  <div class="row">
                     <div class="col-2">
@@ -118,6 +133,18 @@
                         <span id="noteError"></span>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-2">
+                        <label>Image</label>
+                    </div>
+                    <div class="col-4">
+                        <input type="text" th:field="*{photoLoc}" class="form-control"/>
+                    </div>
+                    <div class="col-6">
+                        <span id="photoLocError"></span>
+                    </div>
+                </div>
+                
                 <button type="submit" class="btn btn-success" >Update <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
             </form>
         </div>

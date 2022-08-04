@@ -60,18 +60,19 @@
                 <!-- #rowDynamicDropdown -->
                 <div class="row">
                     <div class="col-2">
-                        <label>Specialization</label>
+                        <label id="specialzation.id">Specialization</label>
                     </div>
                     <div class="col-4">
-                        <select name="specialization.id" id="specialization">
+                        <select name="specialzation.id" id="specialzation">
                         <option value="">-SELECT-</option>
-                        <option th:each="ob:${Specializations}" th:value="${ob.key}" th:text="${ob.value}"></option>
+                        <option th:each="ob:${specialzations}" th:value="${ob.key}" th:text="${ob.value}"></option>
                         </select>
                     </div>
                     <div class="col-6">
                         <span id="specializationError"></span>
                     </div>
                 </div>
+                
                  <!-- #row4 -->
                  <div class="row">
                     <div class="col-2">

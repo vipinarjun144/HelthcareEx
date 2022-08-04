@@ -29,7 +29,7 @@ public class DoctorController {
 	
 	
 	public void createDynamicUI(Model model) {
-		model.addAttribute("Specializations", specService.getIdAndSpecName());
+		model.addAttribute("specialzations", specService.getIdAndSpecName());
 		
 	} 
 	
@@ -53,7 +53,7 @@ public class DoctorController {
 	public String getAll(@RequestParam(value="massage",required = false)String massage,
 			Model model) {
 		List<Doctor> list=service.getAllDoctor();
-		System.out.println(list.get(0).getSpecialzation());
+		System.out.println(list);
 		model.addAttribute("list", list);
 		model.addAttribute("massage", massage);
 		return "DoctorData";

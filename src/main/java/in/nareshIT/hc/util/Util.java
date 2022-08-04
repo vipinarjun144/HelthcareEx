@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 public interface Util {
 	
 	public static Map<Long,String> convertListToMap(List<Object[]> list){
+		
 		Map<Long,String> map=list
 				.stream()
 				.collect(Collectors.toMap(

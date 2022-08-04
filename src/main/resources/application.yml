@@ -1,14 +1,14 @@
-server:
-  port: 9696
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://localhost:3306/r_projecthc
     username: root
+    url: jdbc:mysql://localhost:3306/r_projecthc
+    password: root
   jpa:
+    open-in-view: 'false'
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create
-    show-sql: true
- 
+    show-sql: 'true'
+server:
+  port: '9696'
