@@ -3,6 +3,7 @@ package in.nareshIT.hc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +17,14 @@ import in.nareshIT.hc.entity.Doctor;
 import in.nareshIT.hc.exception.DoctorNotFoundExceptions;
 import in.nareshIT.hc.service.IDoctorService;
 import in.nareshIT.hc.service.ISpecializationService;
+import in.nareshIT.hc.util.MymailUtil;
 
 @Controller
 @RequestMapping("/doc")
 public class DoctorController {
+	
+	@Autowired
+	private MymailUtil mail;
 	
 	@Autowired
 	private IDoctorService service;
@@ -30,7 +35,6 @@ public class DoctorController {
 	
 	public void createDynamicUI(Model model) {
 		model.addAttribute("specialzations", specService.getIdAndSpecName());
-		
 	} 
 	
 	//1 show reg page
@@ -46,6 +50,10 @@ public class DoctorController {
 	public String save(@ModelAttribute Doctor doc,RedirectAttributes model) {
 		Long id=service.saveDoctor(doc);
 		model.addAttribute("massage", "Doctor ("+id+") is created");
+		
+		//mail.send(doc.getEmail(), "Doctorpdf ", "You are successfully Register");
+		//mail.send(doc.getEmail(),"Doctorpdf ", "just download", new ClassPathResource("/static/myRes/Doctor.pdf"));
+		System.out.println("Sending mail>>>>>>>>>>>>>>>>>>>>>>>>>");
 		return "redirect:register";
 	}
 	
@@ -97,7 +105,8 @@ public class DoctorController {
 	public String updateDoctor(@ModelAttribute Doctor doc,
 			RedirectAttributes attribute) {
 		    service.updateDoctor(doc);
-		     attribute.addAttribute("doctor","Doctor"+ doc.getId()+ "Updated");
+		    String massage="Doctor"+ doc.getId()+ "Updated";
+		     attribute.addAttribute("massage",massage);
 	         return "redirect:all";
 	       }
 }

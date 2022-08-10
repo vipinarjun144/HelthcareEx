@@ -1,0 +1,159 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-head bg-primary text-white text-center">
+                <h3>Patient Register</h3>
+            </div>
+            <div class="card-body">
+                <form th:action="@{/patient/save}" method="POST" id="petForm" th:object="${patient}">
+                    <!-- row#1 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> First Name</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" th:field="*{firstName}" class="form-control"/>
+                        </div>
+                        <div class="col-4">
+                            <span id="firstNameError"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Last Name</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" th:field="*{lastName}" class="form-control"/>
+                        </div>
+                        <div class="col-4">
+                            <span id="lastNameError"></span>
+                        </div>
+                    </div>
+
+                    <!-- row#2 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Gender</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="radio" th:field="*{gender}" value="Male"/>Male
+                            <input type="radio" th:field="*{gender}" value="Female"/>Female
+                        </div>
+                        <div class="col-4">
+                            <span id="genderError"></span>
+                        </div>
+                    </div>
+                    <!-- row#3 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Phone</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="text" th:field="*{mobile}" class="form-control"/>
+                        </div>
+                        <div class="col-4">
+                            <span id="mobileError"></span>
+                        </div>
+                    </div>
+                    <!-- row#4 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> DOB</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="date" th:field="*{dateOfBirth}" class="form-control"/>
+                        </div>
+                        <div class="col-4">
+                            <span id="dateOfBirthError"></span>
+                        </div>
+                    </div>
+                    <!-- row#5 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Marial Status</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="radio" th:field="*{marialStatus}" value="M"/>M
+                            <input type="radio" th:field="*{marialStatus}" value="U"/>U
+                            <input type="radio" th:field="*{marialStatus}" value="D"/>D
+                            <input type="radio" th:field="*{marialStatus}" value="LS"/>LS
+                        </div>
+                        <div class="col-4">
+                            <span id="marialStatusError"></span>
+                        </div>
+                    </div>
+                    <!-- row#6 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Present Address</label>
+                        </div>
+                        <div class="col-6">
+                            <textarea th:field="*{presentAddr}" class="form-control"></textarea>
+                        </div>
+                        <div class="col-4">
+                            <span id="presentAddrError"></span>
+                        </div>
+                    </div>
+                    <!-- row#7 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Communication Address</label>
+                        </div>
+                        <div class="col-6">
+                            <textarea th:field="*{commAddr}" class="form-control"></textarea>
+                        </div>
+                        <div class="col-4">
+                            <span id="commAddrError"></span>
+                        </div>
+                        </div>
+                    <!-- row#8 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Past Medical History</label>
+                        </div>
+                        <div class="col-6">
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Anemia"/>Anemia
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Asthma"/>Asthma
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Diabetes"/>Diabetes
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Canser"/>Canser
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Ulcer"/>Ulcer
+                            <input type="checkbox" field="*{medicalHistory}" name="medicalHistory" value="Chickenpox"/>Chickenpox
+                         
+                        </div>
+                        <div class="col-4">
+                            <span id="medicalHistoryError"></span>
+                        </div>
+                    </div>
+                    
+                    <!-- row#9 -->
+                    <div class="row">
+                        <div class="col-2">
+                            <label> Other Details</label>
+                        </div>
+                        <div class="col-6">
+                            <textarea th:field="*{ifOther}" class="form-control"></textarea>
+                        </div>
+                        <div class="col-4">
+                            <span id="ifOtherError"></span>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success" >Update <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+                </form>
+            </div>
+            <div class="card-footer">
+                <div th:if="${massage!=null}" class="card-footer bg-info text-white text-center">
+                    <span th:text="${massage}"> </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

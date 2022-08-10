@@ -1,14 +1,24 @@
 spring:
+  mail:
+    host: smtp.gmail.com
+    username: vipinyedewar14@gmail.com 
+    port: 587
+    properties:
+      mail:
+        smtp:
+          starttls:
+            enable: true
+    password: 9422948998
   datasource:
+    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     url: jdbc:mysql://localhost:3306/r_projecthc
-    password: root
   jpa:
-    open-in-view: 'false'
-    database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
       ddl-auto: create
     show-sql: 'true'
+    open-in-view: 'false'
+    database-platform: org.hibernate.dialect.MySQL8Dialect
 server:
   port: '9696'
