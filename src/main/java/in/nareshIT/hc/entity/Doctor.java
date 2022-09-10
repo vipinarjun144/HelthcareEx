@@ -1,5 +1,6 @@
 package in.nareshIT.hc.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,7 +50,7 @@ public class Doctor {
 	@Column(name="doc_img_col")
 	private String photoLoc;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name="spec_id_fk_col")
 	private Specialization specialzation;
 	

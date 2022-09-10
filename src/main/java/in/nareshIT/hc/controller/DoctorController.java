@@ -3,7 +3,6 @@ package in.nareshIT.hc.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,14 +16,15 @@ import in.nareshIT.hc.entity.Doctor;
 import in.nareshIT.hc.exception.DoctorNotFoundExceptions;
 import in.nareshIT.hc.service.IDoctorService;
 import in.nareshIT.hc.service.ISpecializationService;
-import in.nareshIT.hc.util.MymailUtil;
+//import in.nareshIT.hc.util.MymailUtil;
 
 @Controller
 @RequestMapping("/doc")
 public class DoctorController {
 	
-	@Autowired
-	private MymailUtil mail;
+	/*
+	 * @Autowired private MymailUtil mail;
+	 */
 	
 	@Autowired
 	private IDoctorService service;

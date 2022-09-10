@@ -1,3 +1,7 @@
+master:
+ user:
+  name:VIPIN
+  
 spring:
   mail:
     host: smtp.gmail.com

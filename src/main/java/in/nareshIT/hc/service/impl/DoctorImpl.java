@@ -4,12 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import in.nareshIT.hc.constant.UserRoles;
 import in.nareshIT.hc.entity.Doctor;
+import in.nareshIT.hc.entity.User;
 import in.nareshIT.hc.exception.DoctorNotFoundExceptions;
 import in.nareshIT.hc.repository.DoctorRepository;
+import in.nareshIT.hc.repository.UserRepository;
 import in.nareshIT.hc.service.IDoctorService;
+import in.nareshIT.hc.util.UserUtil;
 import in.nareshIT.hc.util.Util;
 
 @Service
@@ -17,10 +22,27 @@ public class DoctorImpl implements IDoctorService {
 	
 	@Autowired
 	private DoctorRepository repo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
-	public Long saveDoctor(Doctor spec) {		
-		return repo.save(spec).getId();
+	public Long saveDoctor(Doctor doc) {		
+		Long id= repo.save(doc).getId();
+				 if(id!=null) {
+					 User user=new User();
+					 user.setUserDisplay(doc.getFirstName()+" "+doc.getLastName());
+					 user.setUserName(doc.getEmail());
+					 user.setPassword(UserUtil.genPwd());
+					 user.setRole(UserRoles.DOCTOR.name());
+					 userRepo.save(user);
+					 
+					 //TODO:email part is pending
+					 
+				 }
+				 
+				 return id;
+				
 	}
 
 	@Override
