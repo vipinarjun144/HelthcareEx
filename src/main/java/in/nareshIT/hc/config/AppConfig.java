@@ -1,3 +1,4 @@
+
 package in.nareshIT.hc.config;
 
 import org.springframework.context.annotation.Bean;
@@ -8,7 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class AppConfig {
 	
 	@Bean
-	private BCryptPasswordEncoder encoder() {
+	public BCryptPasswordEncoder encoder() {
 		return new BCryptPasswordEncoder();
 	}
 

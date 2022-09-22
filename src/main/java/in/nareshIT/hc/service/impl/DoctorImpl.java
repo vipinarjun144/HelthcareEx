@@ -14,6 +14,7 @@ import in.nareshIT.hc.exception.DoctorNotFoundExceptions;
 import in.nareshIT.hc.repository.DoctorRepository;
 import in.nareshIT.hc.repository.UserRepository;
 import in.nareshIT.hc.service.IDoctorService;
+import in.nareshIT.hc.service.IUserService;
 import in.nareshIT.hc.util.UserUtil;
 import in.nareshIT.hc.util.Util;
 
@@ -24,18 +25,38 @@ public class DoctorImpl implements IDoctorService {
 	private DoctorRepository repo;
 	
 	@Autowired
+	private IUserService userService;
+	
+	/*
+	 * @Autowired private MymailUtil mailSender;
+	 */
+	
+	
+	@Autowired
 	private UserRepository userRepo;
 
 	@Override
 	public Long saveDoctor(Doctor doc) {		
 		Long id= repo.save(doc).getId();
 				 if(id!=null) {
+					 String pwd=UserUtil.genPwd();
 					 User user=new User();
 					 user.setUserDisplay(doc.getFirstName()+" "+doc.getLastName());
 					 user.setUserName(doc.getEmail());
-					 user.setPassword(UserUtil.genPwd());
+					 user.setPassword(pwd);
 					 user.setRole(UserRoles.DOCTOR.name());
-					 userRepo.save(user);
+					 Long genId=userService.save(user);
+					 if(genId!=null) {
+						 new Thread(new Runnable() {
+							@Override
+							public void run() {
+								String text="Your Username for doctor is :"+doc.getEmail()+" Password is :"+pwd;
+								//mailSender.send(patient.getPatEmail(), "Health-Care Credential", text);
+								System.out.println(">>>>>>>>>>"+text);
+							}
+							 
+						 }).start();
+					 }
 					 
 					 //TODO:email part is pending
 					 

@@ -13,6 +13,8 @@ import in.nareshIT.hc.exception.PatientNotFoundException;
 import in.nareshIT.hc.repository.PatientRepository;
 import in.nareshIT.hc.repository.UserRepository;
 import in.nareshIT.hc.service.IPatientService;
+import in.nareshIT.hc.service.IUserService;
+import in.nareshIT.hc.util.MymailUtil;
 import in.nareshIT.hc.util.UserUtil;
 
 @Service
@@ -23,19 +25,36 @@ public class PatientServiceImpl implements IPatientService {
 	private PatientRepository repo;
 	
 	@Autowired
-	private UserRepository userRepo;
+	private IUserService userService;
+	
+	/*
+	 * @Autowired private MymailUtil mailSender;
+	 */
 	
 	@Override
 	@Transactional
 	public Long savePatient(Patient patient) {
 	 Long id= repo.save(patient).getId();
 	 if(id!=null) {
+		 String pwd=UserUtil.genPwd();
 		 User user=new User();
 		 user.setUserDisplay(patient.getFirstName()+" "+patient.getLastName());
 		 user.setUserName(patient.getPatEmail());
-		 user.setPassword(UserUtil.genPwd());
+		 user.setPassword(pwd);
 		 user.setRole(UserRoles.PATIENT.name());
-		 userRepo.save(user);
+		 
+		 Long genId=userService.save(user);
+		 if(genId!=null) {
+			 new Thread(new Runnable() {
+				@Override
+				public void run() {
+					String text="Your Username is :"+patient.getPatEmail()+" Password is :"+pwd;
+					//mailSender.send(patient.getPatEmail(), "Health-Care Credential", text);
+					System.out.println(">>>>>>>>>>"+text);
+				}
+				 
+			 }).start();
+		 }
 		 
 		 //TODO:email part is pending
 		 

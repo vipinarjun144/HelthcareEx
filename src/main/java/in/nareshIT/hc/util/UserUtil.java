@@ -8,11 +8,11 @@ import org.springframework.stereotype.Component;
 public interface UserUtil {
 	
 	public static String genPwd() {
-		return UUID
+		String pwd=UUID
 				.randomUUID()
 				.toString()
-				.replace("-", "")
 				.substring(0, 8);
+		return pwd;
 	}
 
 }
