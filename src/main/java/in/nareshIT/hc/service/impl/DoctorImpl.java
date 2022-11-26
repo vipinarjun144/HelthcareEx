@@ -98,6 +98,14 @@ public class DoctorImpl implements IDoctorService {
 		return map;
 	}
 
+	@Override
+	public List<Doctor> findDoctorBySpecName(Long specId) {
+		List<Object[]> list=repo.findDoctorBySpecName(specId);
+		System.out.println("findDoctorBySpecName list>>>>>>>>>>>>>>>>>>>"+list.toString());
+		List<Doctor> docList=Util.convertList(list);
+		System.out.println("findDoctorBySpecName docList>>>>>>>>>>>>>>>>>>>"+docList);
+		return docList;
+	}
 	
 
 }

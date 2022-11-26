@@ -19,7 +19,8 @@ import in.nareshIT.hc.service.IUserService;
 @Service 
 public class UserServiceImpl implements IUserService,UserDetailsService {
 
-	@Autowired private UserRepository repo;
+	@Autowired 
+	private UserRepository repo;
 
 	@Autowired private BCryptPasswordEncoder encoder;
 
