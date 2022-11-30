@@ -1,0 +1,33 @@
+<html xmlns:th="https://www.thymeleaf.org/">
+<div th:replace="fragments/commonui::header"></div>
+<body>
+	<div th:replace="fragments/commonui::menu"></div>
+	<div class="container">
+		<div class="card">
+			<div class="card-head bg-primary text-white text-center">
+				<h3>Slot Result</h3>
+			</div>
+			<div class="card-body">
+				<div>[[${massage}]]</div>
+					<!-- #row1 -->
+				<table class="table table-hover">
+					<tr class="bg-info text-white">
+						<th>#</th>
+						<th>Date</th>
+						<th>No of Slote</th>
+						<th>Fee</th>
+						<th>Operation</th>
+					</tr>
+					<tr th:each="ob,i:${doc}">
+						<td th:text="${i.count}"></td>
+						<td th:text="${ob[0]}"></td>
+						<td th:text="${ob[1]}"></td>
+						<td th:text="${ob[2]}"></td>
+						<!-- <td th:href="@{/doc/viewSlote(id=${ob.id})}" class="btn btn-info">BOOK REQ</td> -->
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

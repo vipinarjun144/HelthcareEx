@@ -42,9 +42,10 @@
 						<td th:text="${ob.email}"></td>
 						<td th:text="${ob.specialzation.specName}"></td>
 						<td th:text="${ob.mobile}"></td>
-						<td th:text="${ob.gender}"></td>
 						<td th:text="${ob.note}"></td>
-						<!-- <td th:href="#" class="btn btn-info">Book Slot</td> -->
+						<td>
+						<a th:href="@{/appoint/viewSlote(id=${ob.id})}" class="btn btn-info">View Slot</a>
+						 </td>
 					</tr>
 				</table>
 			</div>

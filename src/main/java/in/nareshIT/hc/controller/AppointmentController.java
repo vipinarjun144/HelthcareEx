@@ -72,4 +72,14 @@ public class AppointmentController {
 		model.addAttribute("doc", doc);
 		return "AppointmentSearch";
 	}
+	
+	@GetMapping("/viewSlote")
+	public String showSlote(@RequestParam Long id,Model model) {
+		List<Object[]> doc=service.getAppointmentByDoctor(id);
+		String massage="Result Showing :"+docService.getOneDoctor(id).getFirstName()+" "+docService.getOneDoctor(id).getLastName();
+		model.addAttribute("doc", doc);
+		model.addAttribute("massage", massage);
+		return "AppointmentSlote";
+		
+	} 
 }

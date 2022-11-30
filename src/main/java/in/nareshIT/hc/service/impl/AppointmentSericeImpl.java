@@ -44,4 +44,10 @@ public class AppointmentSericeImpl implements IAppointmentSerice {
 
 	}
 
+	@Override
+	public List<Object[]> getAppointmentByDoctor(Long id) {
+		
+		return repo.getAppointmentByDoctor(id);
+	}
+
 }

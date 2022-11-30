@@ -32,8 +32,9 @@
 					<td th:text="${ob.gender}"></td>
 					<td th:text="${ob.note}"></td>
                         <td>
-                        <a th:href="@{/doc/delete(id=${ob.id})}" class="btn btn-danger">DELETE</a>
-                        <a th:href="@{/doc/edit(id=${ob.id})}" class="btn btn-warning">EDIT</a></td>
+                        <a th:href="@{/doc/delete(id=${ob.id})}"><i class="fa fa-trash" aria-hidden="true"></i>       |</a>
+                        <a th:href="@{/doc/edit(id=${ob.id})}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                        </td>
                     </tr>
                 </table>
                 </div>

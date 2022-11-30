@@ -15,5 +15,7 @@ public interface IAppointmentSerice {
 	public Appointment getOneAppointment(Long id);
 
 	public void updateAppointment(Appointment Appointment);
+	
+	public List<Object[]> getAppointmentByDoctor(Long id);
 
 }
